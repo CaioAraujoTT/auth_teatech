@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
 Widget visibleItem(Widget child, bool visible) {
   return ImageFiltered(
     imageFilter: !visible
-        ? ImageFilter.blur(sigmaX: 4, sigmaY: 4)
+        ? ImageFilter.blur(sigmaX: 2, sigmaY: 2)
         : ImageFilter.blur(sigmaX: 0, sigmaY: 0),
     child: child,
   );
