@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:auth_teatech/extension/date_time_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -113,13 +113,27 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
               onTap: visible
-                  ? () {
-                      Clipboard.setData(ClipboardData(text: number));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Número do autenticador copiado!'),
-                          duration: Duration(seconds: 5),
-                        ),
+                  ? () async {
+                      // Clipboard.setData(ClipboardData(text: number));
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(
+                      //     content: Text('Número do autenticador copiado!'),
+                      //     duration: Duration(seconds: 5),
+                      //   ),
+                      // );
+                      final ImagePicker picker = ImagePicker();
+
+                      await picker.pickImage(source: ImageSource.camera).then(
+                        (value) {
+                          if (value != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Imagem capturada!'),
+                                duration: Duration(seconds: 5),
+                              ),
+                            );
+                          }
+                        },
                       );
                     }
                   : null,
